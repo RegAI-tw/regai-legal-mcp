@@ -41,7 +41,7 @@ RegAI 法律 MCP 是一個雲端託管的 [Model Context Protocol](https://model
 
 ## 開始使用
 
-**RegAI MCP 支援 OAuth**（MCP 授權標準），建議以 RegAI 帳號登入的方式連接，不需要 API 金鑰。
+**RegAI MCP 支援 OAuth**（OAuth 2.1，以 OAuth 2.0 為基礎的 MCP 授權標準），建議以 RegAI 帳號登入的方式連接，不需要 API 金鑰。
 
 **OAuth 登入連接（建議）**：在 AI 助理新增自訂連接器，只要貼上 `https://mcp.regai.tw/mcp`。AI 助理會開啟 RegAI 的登入頁（OAuth），以 RegAI 帳號登入（免費；Email 驗證碼或 LINE）並按「允許」即可。已確認支援：Claude（網頁版、桌面版、Claude Code）、ChatGPT、Goose。
 
