@@ -42,7 +42,9 @@ The data is updated periodically from the official sources. RegAI is not affilia
 
 ## Get started
 
-**Sign in (recommended).** Add a custom connector in your AI assistant with just `https://mcp.regai.tw/mcp`. The assistant opens RegAI's sign-in page (OAuth); sign in with your RegAI account (free; email code or LINE) and click **Allow**. No API key needed. Confirmed with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
+**RegAI MCP supports OAuth** (the MCP authorization standard), so the recommended way to connect is to sign in with your RegAI account. No API key needed.
+
+**Sign in with OAuth (recommended).** Add a custom connector in your AI assistant with just `https://mcp.regai.tw/mcp`. The assistant opens RegAI's sign-in page (OAuth); sign in with your RegAI account (free; email code or LINE) and click **Allow**. Confirmed with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
 
 **Or use an API key**, for apps without sign-in support: copy your key from your [account page](https://regai.tw/account) and send it either
 - as a header: `Authorization: Bearer YOUR_KEY`, or
