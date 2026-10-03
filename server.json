@@ -3,7 +3,7 @@
   "name": "tw.regai/legal",
   "title": "RegAI Legal MCP (Taiwan)",
   "description": "Taiwan law and court decisions for your AI: statutes, articles and rulings, read-only.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "websiteUrl": "https://regai.tw/mcp",
   "repository": {
     "url": "https://github.com/RegAI-tw/regai-legal-mcp",
@@ -16,8 +16,8 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer <your RegAI API key>. Free key at https://regai.tw/account",
-          "isRequired": true,
+          "description": "Optional: Bearer <your RegAI API key>, for clients without OAuth sign-in. Most clients (Claude, ChatGPT, Goose) sign in with OAuth instead. Key at https://regai.tw/account",
+          "isRequired": false,
           "isSecret": true
         }
       ]

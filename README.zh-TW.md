@@ -41,12 +41,13 @@ RegAI 法律 MCP 是一個雲端託管的 [Model Context Protocol](https://model
 
 ## 開始使用
 
-1. 到 https://regai.tw **免費註冊**，在[帳號頁](https://regai.tw/account)複製 API 金鑰。
-2. **在 AI 助理中新增此服務**，金鑰二擇一：
-   - 標頭（建議）：`Authorization: Bearer 你的金鑰`
-   - 只能輸入網址的 App：`https://mcp.regai.tw/mcp?key=你的金鑰`
+**登入連接（建議）**：在 AI 助理新增自訂連接器，只要貼上 `https://mcp.regai.tw/mcp`。AI 助理會開啟 RegAI 的登入頁（OAuth），以 RegAI 帳號登入（免費；Email 驗證碼或 LINE）並按「允許」即可，不需要 API 金鑰。已確認支援：Claude（網頁版、桌面版、Claude Code）、ChatGPT、Goose。
 
-Claude、ChatGPT、Goose、AnythingLLM、LM Studio、Jan 的設定步驟：[examples/clients.md](examples/clients.md) 與 https://regai.tw/mcp 。
+**或使用 API 金鑰**（適用不支援登入的 App）：在[帳號頁](https://regai.tw/account)複製金鑰，二擇一：
+- 標頭：`Authorization: Bearer 你的金鑰`
+- 只能輸入網址的 App：`https://mcp.regai.tw/mcp?key=你的金鑰`
+
+各 App 的設定步驟：[examples/clients.md](examples/clients.md) 與 https://regai.tw/mcp 。
 
 設定好後直接提問，例如「民法第 184 條的內容是什麼？」。更多範例：[examples/prompts.md](examples/prompts.md)。
 
@@ -62,7 +63,7 @@ Claude、ChatGPT、Goose、AnythingLLM、LM Studio、Jan 的設定步驟：[exam
 
 ## 安全與隱私
 
-工具皆為唯讀，只查詢公開資料。API 金鑰以雜湊值比對（並加密保存，方便你登入後再次查看），可隨時重新產生或停用。我們不記錄查詢內容，只保留無法還原成文字的
+工具皆為唯讀，只查詢公開資料。登入連接依 MCP 授權規範（OAuth 2.1，強制 PKCE）實作：存取權杖有效 1 小時，更新權杖每次使用都會更換；可隨時在帳號頁的「已連接的應用程式」中斷連線。API 金鑰以雜湊值比對（並加密保存，方便你登入後再次查看），可隨時重新產生或停用。我們不記錄查詢內容，只保留無法還原成文字的
 指紋以利除錯。詳見 [SECURITY.md](SECURITY.md) 與 https://regai.tw/mcp/security 。
 隱私權聲明：https://regai.tw/privacy
 

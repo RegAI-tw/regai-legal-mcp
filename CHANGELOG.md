@@ -3,6 +3,15 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-10-04 — sign in with OAuth
+
+- Clients can now connect by signing in with a RegAI account (OAuth 2.1 per
+  the MCP authorization spec: Protected Resource Metadata, PKCE, Client ID
+  Metadata Documents and dynamic client registration). No API key needed.
+  Tested with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
+- API keys keep working unchanged (`Authorization: Bearer` header or `?key=`).
+- `server.json` 1.1.0: the API-key header is now optional.
+
 ## 2026-10-03 — documentation repository
 
 - Public documentation, `server.json` and examples published.

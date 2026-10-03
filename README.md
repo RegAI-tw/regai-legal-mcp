@@ -42,13 +42,13 @@ The data is updated periodically from the official sources. RegAI is not affilia
 
 ## Get started
 
-1. **Create a free RegAI account** at https://regai.tw and copy your API key from your [account page](https://regai.tw/account).
-2. **Add the server to your assistant** with your key, either:
-   - as a header (recommended): `Authorization: Bearer YOUR_KEY`, or
-   - in the URL, for apps that only take a URL:
-     `https://mcp.regai.tw/mcp?key=YOUR_KEY`
+**Sign in (recommended).** Add a custom connector in your AI assistant with just `https://mcp.regai.tw/mcp`. The assistant opens RegAI's sign-in page (OAuth); sign in with your RegAI account (free; email code or LINE) and click **Allow**. No API key needed. Confirmed with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
 
-Step-by-step instructions for Claude, ChatGPT, Goose, AnythingLLM, LM Studio and Jan: [examples/clients.md](examples/clients.md) and https://regai.tw/mcp.
+**Or use an API key**, for apps without sign-in support: copy your key from your [account page](https://regai.tw/account) and send it either
+- as a header: `Authorization: Bearer YOUR_KEY`, or
+- in the URL, for apps that only take a URL: `https://mcp.regai.tw/mcp?key=YOUR_KEY`
+
+Step-by-step instructions for each app: [examples/clients.md](examples/clients.md) and https://regai.tw/mcp.
 
 Then just ask, for example:
 「民法第 184 條的內容是什麼？」 or 
@@ -68,7 +68,7 @@ Current prices: https://regai.tw/pricing
 
 ## Security and privacy
 
-Read-only tools over public data only. API keys are matched by their hash (and stored encrypted so you can view yours again); you can regenerate or revoke your key at any time. We don't log the content of your queries, only a keyed fingerprint for troubleshooting. Details: [SECURITY.md](SECURITY.md) and https://regai.tw/mcp/security. Privacy policy: https://regai.tw/privacy.
+Read-only tools over public data only. Sign-in follows the MCP authorization spec (OAuth 2.1 with PKCE); access tokens last 1 hour and refresh tokens rotate on every use, and you can disconnect any app under "Connected apps" on your account page. API keys are matched by their hash (and stored encrypted so you can view yours again); you can regenerate or revoke your key at any time. We don't log the content of your queries, only a keyed fingerprint for troubleshooting. Details: [SECURITY.md](SECURITY.md) and https://regai.tw/mcp/security. Privacy policy: https://regai.tw/privacy.
 
 ## Support
 

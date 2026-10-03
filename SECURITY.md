@@ -15,6 +15,12 @@ The full security description of the RegAI Legal MCP is published at
   by hash and stored encrypted (AES-256-GCM) so you can view it again.
   Regenerate or revoke it any time at https://regai.tw/account. Prefer the
   `Authorization: Bearer` header over the `?key=` URL parameter.
+- **Sign-in (OAuth).** Clients that support it connect by signing in on
+  regai.tw (OAuth 2.1, PKCE S256, exact redirect matching, tokens bound to
+  this service). Access tokens last 1 hour and are accepted only in the
+  `Authorization` header; refresh tokens last 90 days and rotate on every use
+  (reuse of an old one revokes the app). Disconnect apps any time under
+  "Connected apps" at https://regai.tw/account.
 - **Transport and limits.** HTTPS only; rate limits and monthly quotas per
   account.
 - **Logging.** Time, tool and count of calls for billing and quotas; no query
