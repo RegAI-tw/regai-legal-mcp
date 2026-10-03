@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "tw.regai/legal",
+  "title": "RegAI Legal MCP (Taiwan)",
+  "description": "Taiwan law and court decisions for your AI: statutes, articles and rulings, read-only.",
+  "version": "1.0.0",
+  "websiteUrl": "https://regai.tw/mcp",
+  "repository": {
+    "url": "https://github.com/RegAI-tw/regai-legal-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.regai.tw/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <your RegAI API key>. Free key at https://regai.tw/account",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
