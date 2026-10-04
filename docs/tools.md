@@ -25,7 +25,14 @@ Case-type codes used by the decision tools: `C` 憲法 (constitutional),
 
 Search law articles by legal concept, keyword, or a specific article
 reference. Hybrid (semantic + keyword) search over laws only, not court
-decisions.
+decisions. Use it when you don't yet know which article applies. Returns
+matching articles with law name, article number, relevance and text;
+historical versions are marked.
+
+When to use another tool instead:
+- you already know the law and article number → `get_article_by_number`
+- you only need a law's official name → `search_law_titles`
+- court rulings → `search_decisions`
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -38,7 +45,12 @@ Example: `{"query": "勞動基準法 資遣費", "limit": 5}`
 
 Resolve a full or partial law name to the official name(s). Use it first when
 unsure of the exact name before `get_article_by_number`,
-`get_law_hierarchy` or `get_law_details`.
+`get_law_hierarchy` or `get_law_details`. To find articles by topic, use
+`search_law` instead.
+
+Returns a numbered list: an exact match first, then names starting with the
+query, then other names containing it; at most 50, with the total when more
+match.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
