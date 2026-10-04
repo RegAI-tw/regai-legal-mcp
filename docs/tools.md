@@ -87,13 +87,22 @@ and high courts are not included.
 ### `search_decisions`: Search Taiwan court decisions
 
 Search decisions by legal concept, fact pattern or keyword; hybrid search,
-reranked by relevance.
+reranked by relevance. Returns the most relevant decisions, not every match.
+
+When to use another tool instead:
+- every decision containing a literal phrase, or an exact count →
+  `search_decisions_exact`
+- which interpretation prevails where panels diverged (大法庭,
+  統一法律見解) → `search_grand_chamber_decisions`
+- the text of statutes → `search_law`
+
+Read a result in full with `get_decision_details` (by its `jid`).
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `query` | string | yes | e.g. `車禍 過失責任`, `勞資 資遣費 認定` |
 | `limit` | integer | no | Maximum results (default 15) |
-| `case_types` | string[] | no | Any of `C`, `V`, `M`, `A`, `P`; omit for all |
+| `case_types` | string[] | no | Any of `C`, `V`, `M`, `A`, `P`; omit for all. Set only when the user asks to limit the case type, not from words in the query |
 
 Example: `{"query": "借名登記 返還請求", "case_types": ["V"]}`
 

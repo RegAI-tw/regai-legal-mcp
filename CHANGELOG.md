@@ -3,6 +3,15 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-10-04 — clearer tool descriptions
+
+- `search_decisions`: the description now says when to use it and when to use
+  `search_decisions_exact`, `search_grand_chamber_decisions` or `search_law`
+  instead; the `case_types` hint no longer refers to internal source code.
+- `search_law_titles`: the description referred to a non-existent
+  `export_law` tool; it now names `get_law_details`.
+- No parameter or behaviour changes.
+
 ## 2026-10-04 — sign in with OAuth
 
 - Clients can now connect by signing in with a RegAI account (OAuth 2.1 per
