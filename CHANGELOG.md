@@ -3,6 +3,16 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-10-05 — clearer law-search descriptions
+
+- `search_law`: the description now says when to use it, and when to use
+  `get_article_by_number`, `search_law_titles` or `search_decisions` instead,
+  and what each result contains.
+- `search_law_titles`: the description now says how matches are ordered
+  (exact, then starts-with, then contains) and that at most 50 are listed,
+  with the total when more match.
+- No parameter or behaviour changes.
+
 ## 2026-10-04 — clearer tool descriptions
 
 - `search_decisions`: the description now says when to use it and when to use
