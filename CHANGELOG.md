@@ -3,6 +3,16 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-10-05 — decision results show the jid; look up by citation
+
+- `search_decisions` and `search_grand_chamber_decisions`: every result row
+  now shows the decision date, 案由 and `jid`, so `get_decision_details` can
+  be called directly (one case number can hold several documents, told apart
+  by date).
+- `search_decisions`: a citation such as `最高法院 112年度台上字第1234號`
+  works as the query; the description now says so.
+- `get_decision_details`: accepts a `jid` from any of the three search tools.
+
 ## 2026-10-05 — clearer law-search descriptions
 
 - `search_law`: the description now says when to use it, and when to use

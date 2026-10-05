@@ -108,7 +108,12 @@ When to use another tool instead:
   統一法律見解) → `search_grand_chamber_decisions`
 - the text of statutes → `search_law`
 
-Read a result in full with `get_decision_details` (by its `jid`).
+A citation works as the query too, e.g. `最高法院 112年度台上字第1234號`:
+the matching decision ranks first. The same number can exist in civil and
+criminal matters, so check the court/case-type code, date and 案由.
+
+Each result row shows the citation, decision date, 案由, relevance, section
+and `jid`; read a result in full with `get_decision_details` (by its `jid`).
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
