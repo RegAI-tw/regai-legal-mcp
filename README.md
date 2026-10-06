@@ -44,7 +44,9 @@ The data is updated periodically from the official sources. RegAI is not affilia
 
 **RegAI MCP supports OAuth** (OAuth 2.1, the MCP authorization standard built on OAuth 2.0), so the recommended way to connect is to sign in with your RegAI account. No API key needed.
 
-**Sign in with OAuth (recommended).** Add a custom connector in your AI assistant with just `https://mcp.regai.tw/mcp`. The assistant opens RegAI's sign-in page (OAuth); sign in with your RegAI account (free; email code or LINE) and click **Allow**. Confirmed with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
+**In Claude:** RegAI Legal MCP is listed in Claude's connector directory: open [claude.ai/directory/regai](https://claude.ai/directory/regai) (or search "RegAI" under Customize → Connectors), click **Connect** and sign in. No URL to paste.
+
+**Sign in with OAuth (recommended).** In other assistants, add a custom connector in your AI assistant with just `https://mcp.regai.tw/mcp`. The assistant opens RegAI's sign-in page (OAuth); sign in with your RegAI account (free; email code or LINE) and click **Allow**. Confirmed with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
 
 In Claude Code, one command (you sign in on first use):
 

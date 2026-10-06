@@ -22,9 +22,12 @@ screenshots is at https://regai.tw/mcp.
 
 ## Claude (web and Desktop) — sign in
 
-1. Open **Settings → Connectors**.
-2. Click **Add custom connector**, paste `https://mcp.regai.tw/mcp` and save.
-3. Click **Connect**, sign in on the RegAI page that opens, and click **Allow**.
+1. Open [claude.ai/directory/regai](https://claude.ai/directory/regai), or search
+   **RegAI** under **Customize → Connectors**.
+2. Click **Connect**, sign in on the RegAI page that opens, and click **Allow**.
+
+Or add it by URL: **Customize → Connectors → Add custom connector**, paste
+`https://mcp.regai.tw/mcp`, then **Connect**.
 
 ## Claude Code — sign in
 
@@ -113,8 +116,9 @@ Claude Code、ChatGPT、Goose 都是這樣連接。
 各 App 的設定步驟（含截圖）請見 https://regai.tw/mcp 。設定畫面可能因 App
 更新而略有不同，可以在該 App 的「Connectors」或「MCP」設定中找找看。
 
-- **Claude（網頁版、桌面版）**：「設定」→「Connectors」→「Add custom connector」，
-  貼上 `https://mcp.regai.tw/mcp` 並儲存，點選「Connect」後登入 RegAI 並按「允許」。
+- **Claude（網頁版、桌面版）**：開啟 [claude.ai/directory/regai](https://claude.ai/directory/regai)
+  （或在「Customize」→「Connectors」中搜尋「RegAI」），點選「Connect」後登入 RegAI 並按「允許」。
+  也可以用「Add custom connector」貼上 `https://mcp.regai.tw/mcp`。
 - **Claude Code**：執行 `claude mcp add --transport http regai https://mcp.regai.tw/mcp`，
   再於 Claude Code 中輸入 `/mcp`，選擇 `regai` →「Authenticate」，登入並按「允許」。
 - **ChatGPT 桌面版**（需 Plus 以上方案）：「設定」→「Connectors」（沒看到請先在
