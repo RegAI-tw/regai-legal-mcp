@@ -37,6 +37,7 @@ All tools are **read-only** (annotated `readOnlyHint: true`) and query only publ
 
 - **Laws and regulations:** Taiwan's Ministry of Justice national law database (全國法規資料庫), including each law's effective status and pending amendments.
 - **Court decisions:** an apex-tier subset of Judicial Yuan decisions: the Supreme Court, Supreme Administrative Court, Constitutional Court, Disciplinary Court and Intellectual Property and Commercial Court, plus Grand Chamber rulings. District and high court decisions are not included.
+- **Constitutional interpretations:** all 813 Council of Grand Justices Interpretations (司法院大法官會議解釋, 釋字第1–813號), final constitutional interpretations equivalent in rank to today's Constitutional Court judgments, from the [Constitutional Court](https://cons.judicial.gov.tw/) (憲法法庭). They are returned by the decision tools next to court decisions; read one in full with `get_decision_details` using its `jid` or `釋字第812號`.
 
 The data is updated periodically from the official sources. RegAI is not affiliated with the Ministry of Justice or the Judicial Yuan. Results are for research and are not legal advice.
 

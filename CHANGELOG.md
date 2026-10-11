@@ -3,6 +3,18 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-10-11 — Council of Grand Justices Interpretations (釋字) in the decision tools
+
+- New content: all 813 Council of Grand Justices Interpretations (釋字第1–813號,
+  from the Constitutional Court) are searchable alongside court decisions.
+  `search_decisions` returns them in ranked results for constitutional questions;
+  `search_decisions_exact` lists them in its own block with its own exact total;
+  `get_decision_details` reads one in full by its jid or as `釋字第812號`
+  (holding, reasoning, inline opinions, justices, related laws, links to
+  attached files).
+- Case type `C` (憲法) includes them; `V`/`M`/`A`/`P` filters do not.
+- No tool, parameter or schema changes.
+
 ## 2026-10-05 — decision results show the jid; look up by citation
 
 - `search_decisions` and `search_grand_chamber_decisions`: every result row

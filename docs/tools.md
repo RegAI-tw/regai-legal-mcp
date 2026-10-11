@@ -96,6 +96,15 @@ Supreme Administrative Court, Constitutional Court, Disciplinary Court,
 Intellectual Property and Commercial Court, Grand Chamber rulings). District
 and high courts are not included.
 
+Also included: all 813 Council of Grand Justices Interpretations
+(司法院大法官會議解釋, 釋字第1–813號) from the Constitutional Court (憲法法庭).
+They are final, apex-level constitutional interpretations, equivalent in rank
+to today's Constitutional Court judgments. `search_decisions` and
+`search_decisions_exact` return them next to court decisions (shown as
+釋字第N號; case type `C` includes them, `V`/`M`/`A`/`P` filters do not), and
+`get_decision_details` reads one in full. Attached files (opinions, petitions)
+are listed as links, not extracted. Cite as 釋字第N號; source: 憲法法庭.
+
 ### `search_decisions`: Search Taiwan court decisions
 
 Search decisions by legal concept, fact pattern or keyword; hybrid search,
@@ -150,7 +159,7 @@ The full text of one decision, every fragment in order.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `jid` | string | yes | The decision id exactly as returned by the search tools, e.g. `TPSM,110,台上大,3997,20220428,2` |
+| `jid` | string | yes | The decision id exactly as returned by the search tools, e.g. `TPSM,110,台上大,3997,20220428,2`. A Council of Grand Justices Interpretation is read the same way, by its jid (`JCCC,110,釋,812,20211210`) or as `釋字第812號` |
 
 ### `search_grand_chamber_decisions`: Search Grand Chamber rulings
 
