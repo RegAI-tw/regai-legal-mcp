@@ -105,6 +105,14 @@ to today's Constitutional Court judgments. `search_decisions` and
 `get_decision_details` reads one in full. Attached files (opinions, petitions)
 are listed as links, not extracted. Cite as 釋字第N號; source: 憲法法庭.
 
+The Constitutional Court's **judgments** (憲法法庭判決, 憲判字; from 2022, judgments
+only, not rulings/裁定) are included the same way, with the same rank: shown as
+憲法法庭111年憲判字第N號判決, returned by `search_decisions` and
+`search_decisions_exact` (case type `C`), and read in full with `get_decision_details`
+by jid (`JCCC,111,憲判,8,20220527`) or as `111年憲判字第8號` (holding, reasoning, the
+participating justices, related laws). Opinions, the full text and the case files are
+listed as links, not extracted. Source: 憲法法庭.
+
 ### `search_decisions`: Search Taiwan court decisions
 
 Search decisions by legal concept, fact pattern or keyword; hybrid search,
@@ -159,7 +167,7 @@ The full text of one decision, every fragment in order.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `jid` | string | yes | The decision id exactly as returned by the search tools, e.g. `TPSM,110,台上大,3997,20220428,2`. A Council of Grand Justices Interpretation is read the same way, by its jid (`JCCC,110,釋,812,20211210`) or as `釋字第812號` |
+| `jid` | string | yes | The decision id exactly as returned by the search tools, e.g. `TPSM,110,台上大,3997,20220428,2`. A Council of Grand Justices Interpretation is read the same way, by its jid (`JCCC,110,釋,812,20211210`) or as `釋字第812號`; a Constitutional Court judgment by its jid (`JCCC,111,憲判,8,20220527`) or as `111年憲判字第8號` |
 
 ### `search_grand_chamber_decisions`: Search Grand Chamber rulings
 
