@@ -3,6 +3,15 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-10-21 — Listed in ChatGPT's plugin directory
+
+- RegAI Legal (Taiwan) v1.0.0 was approved by OpenAI and published: in ChatGPT, search
+  "RegAI" under Plugins, install, and sign in with your RegAI account (OAuth). Same
+  server, tools and limits as before; nothing changed for existing connections.
+- The server now reports a name (`regai-legal-mcp`), a title, a website and an icon
+  (`https://mcp.regai.tw/icon.png`) in its MCP server info, so clients that show a
+  server logo can draw one.
+
 ## 2026-10-11 — Constitutional Court judgments (憲判字) in the decision tools
 
 - New content: the Constitutional Court's judgments (憲法法庭判決, 憲判字; from 2022,

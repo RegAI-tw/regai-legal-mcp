@@ -47,6 +47,8 @@ RegAI 法律 MCP 是一個雲端託管的 [Model Context Protocol](https://model
 
 **在 Claude 中**：RegAI 法律 MCP 已在 Claude 的連接器目錄上架：開啟 [claude.ai/directory/regai](https://claude.ai/directory/regai)（或在「Customize」→「Connectors」中搜尋「RegAI」），按「Connect」並登入即可，不必貼上網址。
 
+**在 ChatGPT 中**：[RegAI Legal (Taiwan)](https://chatgpt.com/plugins/plugin_asdk_app_6ac313132d7c8191b12c67fe863969a7?q=regai) 已在 ChatGPT 的外掛目錄上架：在 ChatGPT 開啟「Plugins」，搜尋「RegAI」，按「安裝」並以 RegAI 帳號（免費）登入即可，不必貼上網址。
+
 **OAuth 登入連接（建議）**：在其他 AI 助理新增自訂連接器，只要貼上 `https://mcp.regai.tw/mcp`。AI 助理會開啟 RegAI 的登入頁（OAuth），以 RegAI 帳號登入（免費；Email 驗證碼或 LINE）並按「允許」即可。已確認支援：Claude（網頁版、桌面版、Claude Code）、ChatGPT、Goose。
 
 Claude Code 只要一行指令（第一次使用時登入）：

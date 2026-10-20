@@ -48,6 +48,8 @@ The data is updated periodically from the official sources. RegAI is not affilia
 
 **In Claude:** RegAI Legal MCP is listed in Claude's connector directory: open [claude.ai/directory/regai](https://claude.ai/directory/regai) (or search "RegAI" under Customize → Connectors), click **Connect** and sign in. No URL to paste.
 
+**In ChatGPT:** [RegAI Legal (Taiwan)](https://chatgpt.com/plugins/plugin_asdk_app_6ac313132d7c8191b12c67fe863969a7?q=regai) is listed in ChatGPT's plugin directory: open Plugins in ChatGPT, search "RegAI", click **Install** and sign in with your RegAI account (free). No URL to paste.
+
 **Sign in with OAuth (recommended).** In other assistants, add a custom connector in your AI assistant with just `https://mcp.regai.tw/mcp`. The assistant opens RegAI's sign-in page (OAuth); sign in with your RegAI account (free; email code or LINE) and click **Allow**. Confirmed with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
 
 In Claude Code, one command (you sign in on first use):
