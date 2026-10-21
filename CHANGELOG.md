@@ -3,6 +3,16 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-10-21 (later) — `sources` and `lang` parameters published; tool descriptions mention 憲判字 and 釋字
+
+- New optional parameters (they already worked; now they are in the tool schemas):
+  `sources` on `search_decisions` and `search_decisions_exact` (`decisions`, `judgments`,
+  `interpretations`, or `constitutional`; omit for everything), and `lang` on
+  `get_decision_details` (`en` for the English text of a 釋字 interpretation). Existing
+  calls are unchanged. Server instructions and the descriptions of `search_decisions`,
+  `search_decisions_exact` and `get_decision_details` now say that Constitutional Court
+  judgments (憲判字) and Interpretations (釋字) are covered and can be read by citation.
+
 ## 2026-10-21 — Listed in ChatGPT's plugin directory
 
 - RegAI Legal (Taiwan) v1.0.0 was approved by OpenAI and published: in ChatGPT, search

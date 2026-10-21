@@ -137,6 +137,7 @@ and `jid`; read a result in full with `get_decision_details` (by its `jid`).
 | `query` | string | yes | e.g. `車禍 過失責任`, `勞資 資遣費 認定` |
 | `limit` | integer | no | Maximum results (default 15) |
 | `case_types` | string[] | no | Any of `C`, `V`, `M`, `A`, `P`; omit for all. Set only when the user asks to limit the case type, not from words in the query |
+| `sources` | string[] | no | Limit the kinds of decisions: `decisions` (court rulings), `judgments` (憲法法庭判決, 憲判字), `interpretations` (大法官解釋, 釋字) or `constitutional` (both); omit to search everything. Set only when the user asks to limit the source |
 
 Example: `{"query": "借名登記 返還請求", "case_types": ["V"]}`
 
@@ -158,6 +159,7 @@ matching passage.
 | `year_to` | integer | no | Latest decision-date year, inclusive |
 | `page` | integer | no | 1-based page (default 1) |
 | `page_size` | integer | no | Rows per page (default 20, max 50) |
+| `sources` | string[] | no | Same values as in `search_decisions`; `constitutional` lists 憲判字 and 釋字 as one 憲法審查 block with its own exact total |
 
 Example: `{"terms": ["借名登記"], "exclude": ["信託"], "court": "最高法院", "year_from": 110}`
 
@@ -168,6 +170,7 @@ The full text of one decision, every fragment in order.
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `jid` | string | yes | The decision id exactly as returned by the search tools, e.g. `TPSM,110,台上大,3997,20220428,2`. A Council of Grand Justices Interpretation is read the same way, by its jid (`JCCC,110,釋,812,20211210`) or as `釋字第812號`; a Constitutional Court judgment by its jid (`JCCC,111,憲判,8,20220527`) or as `111年憲判字第8號` |
+| `lang` | string | no | `en` returns the official English text of a 釋字 interpretation where one exists; ignored for other decisions |
 
 ### `search_grand_chamber_decisions`: Search Grand Chamber rulings
 
