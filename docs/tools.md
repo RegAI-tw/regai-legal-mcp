@@ -1,6 +1,6 @@
 # Tool reference
 
-The RegAI Legal MCP exposes 9 tools. All are read-only and idempotent
+The RegAI Legal MCP exposes 11 tools (the 2 financial-regulation tools return results on MCP Pro). All are read-only and idempotent
 (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`).
 Text inputs (queries, law names, phrases) are **Traditional Chinese**.
 
@@ -12,6 +12,8 @@ what is possible and for writing better prompts.
 - [Court decisions](#court-decisions): `search_decisions`,
   `search_decisions_exact`, `get_decision_details`,
   `search_grand_chamber_decisions`
+- [Financial regulations](#financial-regulations-金融法規): `search_domain_corpus`,
+  `get_domain_document` (MCP Pro)
 
 Case-type codes used by the decision tools: `C` 憲法 (constitutional),
 `V` 民事 (civil), `M` 刑事 (criminal), `A` 行政 (administrative),
@@ -185,6 +187,48 @@ Chamber's answer, and the final judgment applying it (about 225 decisions).
 | `query` | string | yes | The legal question, e.g. `未遂犯與既遂犯的區分標準`, `借名登記契約的效力` |
 | `limit` | integer | no | Maximum results (default 15) |
 | `case_types` | string[] | no | Any of `V`, `M`, `A` |
+
+---
+
+## Financial regulations (金融法規)
+
+The Financial Supervisory Commission's regulations (金融監督管理委員會 and its banking, securities
+and futures, insurance and examination bureaus), from the commission's law database
+(law.fsc.gov.tw): 法律 (statutes), 法規命令 (regulations), 實質法規 (substantive rules such as
+the mandatory and prohibited terms of standard-form contracts), 行政規則 (administrative rules),
+函釋 (rulings: the regulator's official interpretations) and 公告 (notices).
+
+Every record carries its **category** (法規類別) - a ruling or administrative rule is the
+regulator's interpretation, not statute text - and its **status** as of the last update:
+已停止適用 (no longer in force), 部分停止適用 (partly repealed), 尚未生效 (not yet in force), or a
+repeal or amendment that takes effect on a later date (e.g. 將自民國117年1月1日起停止適用).
+Records no longer in force are left out unless `include_repealed`; a record named by its
+字號 is always returned, with its status.
+
+**MCP Pro / RegAI Pro.** On the Free plan both tools return an upgrade message instead of
+results, and the call is not counted toward the monthly limit.
+
+### `search_domain_corpus`: Search financial regulations
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `query` | string | yes | A question or keywords, e.g. `境外結構型商品可否以人民幣計價`; or a document number (字號) such as `金管銀法字第11101445721號令` |
+| `law_class` | string[] | no | Only these categories: `statute`, `regulation`, `substantive_rule`, `admin_rule`, `interpretation` (函釋), `notice`, `other` |
+| `unit` | string | no | Only one issuing unit: `銀行局`, `證券期貨局`, `保險局`, `檢查局` or `本會` |
+| `include_repealed` | boolean | no | Include records no longer in force (default false) |
+| `limit` | integer | no | Maximum records (default 10, max 20) |
+
+Each result shows the title (with the article or point that matched), category, issuing unit,
+字號, date, id (`fsc:GL004294`), status when not plainly in force, and the matching text.
+
+### `get_domain_document`: Get a financial-regulation record
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id_or_number` | string | yes | The id from `search_domain_corpus` (`fsc:GL004294` or `GL004294`) or a 字號; several records can share a 字號 (a 令 and its companion 函), and all are returned |
+
+Returns the record as Markdown: category, issuing unit, 字號, dates, status, content, 編註
+(editor's notes), legislative history and attachment links. Source: 金融監督管理委員會主管法規查詢系統.
 
 ---
 

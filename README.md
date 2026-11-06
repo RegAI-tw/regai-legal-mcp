@@ -28,6 +28,8 @@ RegAI Legal MCP is a hosted [Model Context Protocol](https://modelcontextprotoco
 | `search_decisions_exact` | List **every** decision containing literal phrase(s), with the exact total |
 | `get_decision_details` | Full text of one decision by its id (`jid`) |
 | `search_grand_chamber_decisions` | Search Grand Chamber (大法庭) rulings that resolve divergent interpretations |
+| `search_domain_corpus` | Search Taiwan financial regulations (金融法規): statutes, regulations, rulings (函釋) and more, each with its category and status. **MCP Pro** |
+| `get_domain_document` | Full text of one financial-regulation record by id or document number (字號). **MCP Pro** |
 
 Full parameters and examples: [docs/tools.md](docs/tools.md).
 
@@ -38,9 +40,10 @@ All tools are **read-only** (annotated `readOnlyHint: true`) and query only publ
 - **Laws and regulations:** Taiwan's Ministry of Justice national law database (全國法規資料庫), including each law's effective status and pending amendments.
 - **Court decisions:** an apex-tier subset of Judicial Yuan decisions: the Supreme Court, Supreme Administrative Court, Constitutional Court, Disciplinary Court and Intellectual Property and Commercial Court, plus Grand Chamber rulings. District and high court decisions are not included.
 - **Constitutional interpretations:** all 813 Council of Grand Justices Interpretations (司法院大法官會議解釋, 釋字第1–813號), final constitutional interpretations equivalent in rank to today's Constitutional Court judgments, from the [Constitutional Court](https://cons.judicial.gov.tw/) (憲法法庭). They are returned by the decision tools next to court decisions; read one in full with `get_decision_details` using its `jid` or `釋字第812號`.
+- **Financial regulations (MCP Pro):** the Financial Supervisory Commission's regulations (金融監督管理委員會主管法規查詢系統, law.fsc.gov.tw): statutes, regulations, substantive rules (實質法規), administrative rules, rulings (函釋) and notices. Each record carries its category (法規類別) and its status as of the last update: no longer in force, partly repealed, not yet in force, or a repeal or amendment taking effect later. On the Free plan the two tools return an upgrade message, and the call is not counted.
 - **Constitutional Court judgments:** the Constitutional Court's judgments (憲法法庭判決, 憲判字; from 2022, judgments only), equal in rank to the interpretations and returned by the same tools; read one in full with `get_decision_details` using its `jid` or `111年憲判字第8號`. Opinions and case files are links, not extracted.
 
-The data is updated periodically from the official sources. RegAI is not affiliated with the Ministry of Justice or the Judicial Yuan. Results are for research and are not legal advice.
+The data is updated periodically from the official sources. RegAI is not affiliated with the Ministry of Justice, the Judicial Yuan or the Financial Supervisory Commission. Results are for research and are not legal advice.
 
 ## Get started
 

@@ -3,6 +3,15 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-11-06 — Financial regulations (金融法規), MCP Pro
+
+- New content and two new tools: `search_domain_corpus` and `get_domain_document` search and
+  read the Financial Supervisory Commission's regulations (法律, 法規命令, 實質法規, 行政規則,
+  函釋, 公告), each labelled with its category and its status (no longer in force, partly
+  repealed, not yet in force, or a change taking effect later). Results on MCP Pro and RegAI
+  Pro; on the Free plan the tools return an upgrade message and the call is not counted.
+  Existing tools are unchanged.
+
 ## 2026-10-21 (later) — `sources` and `lang` parameters published; tool descriptions mention 憲判字 and 釋字
 
 - New optional parameters (they already worked; now they are in the tool schemas):
