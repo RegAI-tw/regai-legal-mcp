@@ -12,8 +12,8 @@ what is possible and for writing better prompts.
 - [Court decisions](#court-decisions): `search_decisions`,
   `search_decisions_exact`, `get_decision_details`,
   `search_grand_chamber_decisions`
-- [Financial regulations](#financial-regulations-金融法規): `search_domain_corpus`,
-  `get_domain_document` (MCP Pro)
+- [Financial regulations](#financial-regulations-金融法規) and [economic regulations](#economic-regulations-經濟法規):
+  `search_domain_corpus`, `get_domain_document` (MCP Pro)
 
 Case-type codes used by the decision tools: `C` 憲法 (constitutional),
 `V` 民事 (civil), `M` 刑事 (criminal), `A` 行政 (administrative),
@@ -213,10 +213,11 @@ results, and the call is not counted toward the monthly limit.
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `query` | string | yes | A question or keywords, e.g. `境外結構型商品可否以人民幣計價`; or a document number (字號) such as `金管銀法字第11101445721號令` |
-| `law_class` | string[] | no | Only these categories: `statute`, `regulation`, `substantive_rule`, `admin_rule`, `interpretation` (函釋), `notice`, `other` |
+| `law_class` | string[] | no | Only these categories: `statute`, `regulation`, `substantive_rule`, `admin_rule`, `interpretation` (函釋), `notice`, `judicial` (司法判解, 經濟法規), `other` |
 | `unit` | string | no | Only one issuing unit: `銀行局`, `證券期貨局`, `保險局`, `檢查局` or `本會` |
 | `include_repealed` | boolean | no | Include records no longer in force (default false) |
 | `limit` | integer | no | Maximum records (default 10, max 20) |
+| `domain` | string[] | no | Only these databases: `finance` (金融法規), `economy` (經濟法規); omit for both |
 
 Each result shows the title (with the article or point that matched), category, issuing unit,
 字號, date, id (`fsc:GL004294`), status when not plainly in force, and the matching text.
@@ -229,6 +230,29 @@ Each result shows the title (with the article or point that matched), category, 
 
 Returns the record as Markdown: category, issuing unit, 字號, dates, status, content, 編註
 (editor's notes), legislative history and attachment links. Source: 金融監督管理委員會主管法規查詢系統.
+
+## Economic regulations (經濟法規)
+
+The Ministry of Economic Affairs' regulations (經濟部 and its agencies: 商業發展署, 水利署, 標準檢驗局,
+能源署, 產業發展署, 國際貿易署 and others), searched with the same two tools; pass
+`domain: ["economy"]` to search them alone. Sources:
+
+- 經濟部主管法規共用系統 (law.moea.gov.tw): 法規命令, 實質法規, 行政規則, 函釋 and 公告.
+- 商工行政法規檢索系統 (gcis.nat.gov.tw/elaw): the 函釋 and the court rulings (司法判解,
+  `law_class: ["judicial"]`) filed under each article of 公司法, 商業登記法, 商業會計法 and related laws.
+- 產業發展署 (www.ida.gov.tw): notices.
+
+**Laws already in the laws database are not copied.** A statute or 法規命令 the MOEA administers
+that is also in the laws database appears as an article hit marked **綜合法規**, ranked with the
+rulings; read it with `get_article_by_number` or `get_law_details`.
+
+**Precedents.** A ruling labelled 判例 (and every 大理院 entry) carries a note on 法院組織法第57條之1:
+判例 with no full text on record have ceased to apply, and the others have the same effect as an
+ordinary Supreme Court decision.
+
+The `unit` filter takes the MOEA unit's full name, e.g. `經濟部水利署`. Ids look like
+`moea:GL001967`, `gcis:cons:9980` (a ruling) and `gcis:case:26` (a court ruling). Same plans as
+financial regulations: MCP Pro / RegAI Pro, an upgrade message on Free.
 
 ---
 

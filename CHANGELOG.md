@@ -3,6 +3,20 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-11-16 — Economic regulations (經濟法規), MCP Pro
+
+- New content in `search_domain_corpus` / `get_domain_document`: the Ministry of Economic Affairs'
+  regulations (經濟部 and its agencies: 法規命令, 實質法規, 行政規則, 函釋, 公告) and the rulings and
+  court rulings (司法判解) that the MOEA's GCIS system files under each article of 公司法,
+  商業登記法 and related laws. Laws already in the laws database are not copied: they appear as
+  article hits marked 綜合法規. Rulings labelled 判例 carry a note on 法院組織法第57條之1.
+- `search_domain_corpus` gains an optional `domain` parameter (`finance`, `economy`; omit for
+  both), and `law_class` accepts `judicial`. Ids now include `moea:…`, `gcis:cons:…` and
+  `gcis:case:…`.
+- Law tools: when a cited record is not a financial regulation, the note at the end reads
+  【相關專業法規】 and labels each record with its database. Same plans as before: results on MCP Pro
+  and RegAI Pro, an upgrade message on Free.
+
 ## 2026-11-06 — Financial regulations (金融法規), MCP Pro
 
 - New content and two new tools: `search_domain_corpus` and `get_domain_document` search and
