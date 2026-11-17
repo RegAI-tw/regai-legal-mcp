@@ -237,7 +237,7 @@ The Ministry of Economic Affairs' regulations (經濟部 and its agencies: 商�
 能源署, 產業發展署, 國際貿易署 and others), searched with the same two tools; pass
 `domain: ["economy"]` to search them alone. Sources:
 
-- 經濟部主管法規共用系統 (law.moea.gov.tw): 法規命令, 實質法規, 行政規則, 函釋 and 公告.
+- 經濟部主管法規查詢系統 (law.moea.gov.tw): 法規命令, 實質法規, 行政規則, 函釋 and 公告.
 - 商工行政法規檢索系統 (gcis.nat.gov.tw/elaw): the 函釋 and the court rulings (司法判解,
   `law_class: ["judicial"]`) filed under each article of 公司法, 商業登記法, 商業會計法 and related laws.
 - 產業發展署 (www.ida.gov.tw): notices.
