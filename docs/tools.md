@@ -1,6 +1,6 @@
 # Tool reference
 
-The RegAI Legal MCP exposes 11 tools (the 2 financial-regulation tools return results on MCP Pro). All are read-only and idempotent
+The RegAI Legal MCP exposes 11 tools (the 2 agency-regulation tools, 金融法規 and 經濟法規, return results on MCP Pro). All are read-only and idempotent
 (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`).
 Text inputs (queries, law names, phrases) are **Traditional Chinese**.
 

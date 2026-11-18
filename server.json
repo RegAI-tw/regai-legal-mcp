@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "tw.regai/legal",
   "title": "RegAI Legal MCP (Taiwan)",
-  "description": "Taiwan law and court decisions for your AI: statutes, articles and rulings, read-only.",
-  "version": "1.2.0",
+  "description": "Taiwan law, court decisions and agency regulations for your AI: statutes, rulings, read-only.",
+  "version": "1.3.0",
   "websiteUrl": "https://regai.tw/mcp",
   "repository": {
     "url": "https://github.com/RegAI-tw/regai-legal-mcp",

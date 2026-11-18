@@ -2,9 +2,9 @@
 
 **English** · [繁體中文](README.zh-TW.md)
 
-Taiwan law and court decisions for your AI assistant: statutes, articles and rulings, read-only.
+Taiwan law, court decisions and agency regulations for your AI assistant: statutes, articles, rulings and interpretive letters, read-only.
 
-RegAI Legal MCP is a hosted [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants such as Claude and ChatGPT grounded access to Taiwan's laws and court decisions. Your assistant can search statutes by concept or keyword, fetch an article by number (with the official English translation where one exists), browse a law's structure, search apex-court decisions and Grand Chamber (大法庭) rulings, and list every decision that contains an exact phrase.
+RegAI Legal MCP is a hosted [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants such as Claude and ChatGPT grounded access to Taiwan's laws, court decisions and agency regulations. Your assistant can search statutes by concept or keyword, fetch an article by number (with the official English translation where one exists), browse a law's structure, search apex-court decisions and Grand Chamber (大法庭) rulings, look up Constitutional Court (憲法法庭) judgments and Constitutional Interpretations (釋字), list every decision that contains an exact phrase, and, on MCP Pro, search the financial (金融法規) and economic (經濟法規) regulations of Taiwan's regulators, including their interpretive letters (函釋).
 
 - **Endpoint:** `https://mcp.regai.tw/mcp` (Streamable HTTP)
 - **Website and setup guide:** https://regai.tw/mcp
@@ -54,7 +54,7 @@ The data is updated periodically from the official sources. RegAI is not affilia
 
 **In ChatGPT:** [RegAI Legal (Taiwan)](https://chatgpt.com/plugins/plugin_asdk_app_6ac313132d7c8191b12c67fe863969a7?q=regai) is listed in ChatGPT's plugin directory: open Plugins in ChatGPT, search "RegAI", click **Install** and sign in with your RegAI account (free). No URL to paste.
 
-**Sign in with OAuth (recommended).** In other assistants, add a custom connector in your AI assistant with just `https://mcp.regai.tw/mcp`. The assistant opens RegAI's sign-in page (OAuth); sign in with your RegAI account (free; email code or LINE) and click **Allow**. Confirmed with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
+**Sign in with OAuth (recommended).** In other assistants, add a custom connector in your AI assistant with just `https://mcp.regai.tw/mcp`. The assistant opens RegAI's sign-in page (OAuth); sign in with your RegAI account (free; email code, Google or LINE) and click **Allow**. Confirmed with Claude (web, Desktop, Claude Code), ChatGPT and Goose.
 
 In Claude Code, one command (you sign in on first use):
 

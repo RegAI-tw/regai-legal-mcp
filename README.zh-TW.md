@@ -2,9 +2,9 @@
 
 [English](README.md) · **繁體中文**
 
-讓你的 AI 查台灣法規與法院裁判：法條全文、條號查詢、裁判搜尋，唯讀。
+讓你的 AI 查台灣法規、法院裁判與專業法規：法條全文、條號查詢、裁判與函釋搜尋，唯讀。
 
-RegAI 法律 MCP 是一個雲端託管的 [Model Context Protocol](https://modelcontextprotocol.io)（MCP）服務，讓 Claude、ChatGPT 等 AI 助理直接查詢台灣法規與法院裁判：以概念或關鍵字搜尋法條、依條號取得條文（可附官方英譯）、檢視法規架構、搜尋最高法院等裁判與大法庭裁定，並可列出含特定詞句的所有裁判。
+RegAI 法律 MCP 是一個雲端託管的 [Model Context Protocol](https://modelcontextprotocol.io)（MCP）服務，讓 Claude、ChatGPT 等 AI 助理直接查詢台灣法規、法院裁判與專業法規：以概念或關鍵字搜尋法條、依條號取得條文（可附官方英譯）、檢視法規架構、搜尋最高法院等裁判與大法庭裁定、查詢憲法法庭判決與大法官釋字、列出含特定詞句的所有裁判，並可在 MCP Pro 搜尋金融法規與經濟法規（含函釋）。
 
 - **服務位址：** `https://mcp.regai.tw/mcp`（Streamable HTTP）
 - **網站與設定說明：** https://regai.tw/mcp
@@ -53,7 +53,7 @@ RegAI 法律 MCP 是一個雲端託管的 [Model Context Protocol](https://model
 
 **在 ChatGPT 中**：[RegAI Legal (Taiwan)](https://chatgpt.com/plugins/plugin_asdk_app_6ac313132d7c8191b12c67fe863969a7?q=regai) 已在 ChatGPT 的外掛目錄上架：在 ChatGPT 開啟「Plugins」，搜尋「RegAI」，按「安裝」並以 RegAI 帳號（免費）登入即可，不必貼上網址。
 
-**OAuth 登入連接（建議）**：在其他 AI 助理新增自訂連接器，只要貼上 `https://mcp.regai.tw/mcp`。AI 助理會開啟 RegAI 的登入頁（OAuth），以 RegAI 帳號登入（免費；Email 驗證碼或 LINE）並按「允許」即可。已確認支援：Claude（網頁版、桌面版、Claude Code）、ChatGPT、Goose。
+**OAuth 登入連接（建議）**：在其他 AI 助理新增自訂連接器，只要貼上 `https://mcp.regai.tw/mcp`。AI 助理會開啟 RegAI 的登入頁（OAuth），以 RegAI 帳號登入（免費；Email 驗證碼、Google 或 LINE）並按「允許」即可。已確認支援：Claude（網頁版、桌面版、Claude Code）、ChatGPT、Goose。
 
 Claude Code 只要一行指令（第一次使用時登入）：
 

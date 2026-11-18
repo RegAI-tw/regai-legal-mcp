@@ -3,6 +3,16 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-11-18 — No sessions on the endpoint
+
+- `https://mcp.regai.tw/mcp` no longer keeps sessions, for any protocol version: `initialize`
+  returns no `Mcp-Session-Id`, a session id sent by the client is ignored, and each request is
+  served on its own. Before, clients on protocol versions older than 2026-07-28 got
+  `404 Session not found` on their first call after a server restart and had to reconnect.
+- `GET` and `DELETE` on the endpoint now answer `405 Method Not Allowed` (the server sends no
+  server-initiated messages, so there is no stream to open or session to end). Tools,
+  parameters, sign-in and limits are unchanged.
+
 ## 2026-11-16 — Economic regulations (經濟法規), MCP Pro
 
 - New content in `search_domain_corpus` / `get_domain_document`: the Ministry of Economic Affairs'
