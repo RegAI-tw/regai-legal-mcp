@@ -3,6 +3,19 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-11-23 — Intellectual property (智慧財產), MCP Pro
+
+- New content in `search_domain_corpus` / `get_domain_document`: the Intellectual Property Office's
+  copyright interpretive letters (著作權解釋令函, about 7,000), patent and trademark rulings, and its
+  rules on trade secrets, integrated circuit layouts and optical discs. Statutes appear as 綜合法規
+  article hits; TIPO rules held in 經濟法規 appear tagged 經濟法規. Every ruling carries a reminder
+  to check the current article (TIPO marks no ruling as repealed), and older ones are marked 舊法時期.
+- `domain` accepts `ip`, and `search_domain_corpus` gains an optional `topic` parameter (`patent`,
+  `trademark`, `copyright`, `trade_secret`, `ic_layout`, `optical_disc`, `other`). Ids now include
+  `tipo:cr:…`, `tipo:pt:…` and `tipo:tm:…`. `get_domain_document` lists the court decisions a ruling
+  cites, with their `jid`. Same plans as before: results on MCP Pro and RegAI Pro, an upgrade
+  message on Free.
+
 ## 2026-11-18 — No sessions on the endpoint
 
 - `https://mcp.regai.tw/mcp` no longer keeps sessions, for any protocol version: `initialize`

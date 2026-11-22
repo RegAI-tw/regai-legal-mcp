@@ -1,6 +1,6 @@
 # Tool reference
 
-The RegAI Legal MCP exposes 11 tools (the 2 agency-regulation tools, 金融法規 and 經濟法規, return results on MCP Pro). All are read-only and idempotent
+The RegAI Legal MCP exposes 11 tools (the 2 agency-regulation tools, 金融法規, 經濟法規 and 智慧財產, return results on MCP Pro). All are read-only and idempotent
 (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`).
 Text inputs (queries, law names, phrases) are **Traditional Chinese**.
 
@@ -12,7 +12,7 @@ what is possible and for writing better prompts.
 - [Court decisions](#court-decisions): `search_decisions`,
   `search_decisions_exact`, `get_decision_details`,
   `search_grand_chamber_decisions`
-- [Financial regulations](#financial-regulations-金融法規) and [economic regulations](#economic-regulations-經濟法規):
+- [Financial regulations](#financial-regulations-金融法規), [economic regulations](#economic-regulations-經濟法規) and [intellectual property](#intellectual-property-智慧財產):
   `search_domain_corpus`, `get_domain_document` (MCP Pro)
 
 Case-type codes used by the decision tools: `C` 憲法 (constitutional),
@@ -217,7 +217,8 @@ results, and the call is not counted toward the monthly limit.
 | `unit` | string | no | Only one issuing unit: `銀行局`, `證券期貨局`, `保險局`, `檢查局` or `本會` |
 | `include_repealed` | boolean | no | Include records no longer in force (default false) |
 | `limit` | integer | no | Maximum records (default 10, max 20) |
-| `domain` | string[] | no | Only these databases: `finance` (金融法規), `economy` (經濟法規); omit for both |
+| `domain` | string[] | no | Only these databases: `finance` (金融法規), `economy` (經濟法規), `ip` (智慧財產); omit for all |
+| `topic` | string[] | no | 智慧財產 only: these rights: `patent` 專利, `trademark` 商標, `copyright` 著作權, `trade_secret` 營業秘密, `ic_layout` 積體電路電路布局, `optical_disc` 光碟, `other` 其他; omit for all |
 
 Each result shows the title (with the article or point that matched), category, issuing unit,
 字號, date, id (`fsc:GL004294`), status when not plainly in force, and the matching text.
@@ -253,6 +254,32 @@ ordinary Supreme Court decision.
 The `unit` filter takes the MOEA unit's full name, e.g. `經濟部水利署`. Ids look like
 `moea:GL001967`, `gcis:cons:9980` (a ruling) and `gcis:case:26` (a court ruling). Same plans as
 financial regulations: MCP Pro / RegAI Pro, an upgrade message on Free.
+
+## Intellectual property (智慧財產)
+
+The Taiwan Intellectual Property Office's (經濟部智慧財產局, TIPO) rulings and related rules, searched with the same
+two tools; pass `domain: ["ip"]` to search them alone, and `topic` to narrow by right (e.g. `topic: ["copyright"]`).
+Sources:
+
+- 政府資料開放平臺 (data.gov.tw): the copyright interpretive letters (著作權解釋令函, about 7,000, from 1981 on;
+  those numbered 內著字 date from when the Ministry of the Interior administered copyright) and the 專利師 letters.
+- 經濟部智慧財產局 (www.tipo.gov.tw): patent rulings (專利法令函釋, with their date and the articles they concern),
+  trademark rulings (商標法令解釋) and TIPO's own rules on trade secrets, integrated circuit layouts and optical discs.
+
+Each hit is tagged with its right, e.g. 〔智慧財產・著作權・函釋（電子郵件）〕; rulings given as e-mail replies are labelled
+電子郵件, and some trademark rulings are dated to the month only.
+
+**No repeal marks upstream.** TIPO does not mark a ruling as no longer applying, so every ruling carries a reminder to
+check the current text of the article it applies; one made before the last full revision of its statute (著作權法
+2003-07-09, 專利法 2011-12-21, 商標法 2011-06-29) is also marked 舊法時期.
+
+**References.** Statutes and regulations are not copied: they appear as article hits marked 綜合法規. TIPO rules that
+經濟法規 holds (examination-guideline amendments, operating directions) appear tagged 經濟法規 and open as that record;
+when both databases are searched, each is listed once. `get_domain_document` lists the court decisions a ruling cites,
+with the `jid` to pass to `get_decision_details` when the decision is in the decisions database.
+
+Ids look like `tipo:cr:電子郵件1150116` (copyright), `tipo:pt:983-23330` (patent) and `tipo:tm:574-66036`
+(trademark). Same plans as financial regulations: MCP Pro / RegAI Pro, an upgrade message on Free.
 
 ---
 
