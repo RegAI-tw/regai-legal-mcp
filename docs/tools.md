@@ -287,6 +287,7 @@ Ids look like `tipo:cr:電子郵件1150116` (copyright), `tipo:pt:983-23330` (pa
 
 - A tool that finds nothing returns a short message saying so (in Chinese).
 - Internal errors return a generic message; details are never exposed.
-- Over-quota or rate-limited calls return a JSON-RPC error that names the
-  limit (on the Free plan, with an upgrade link), so your assistant can tell
-  you. Plans: see the [README](../README.md#plans-and-limits).
+- Over-quota or rate-limited calls, and agency-regulation tools on the Free
+  plan, return a tool result marked as an error (`isError: true`) that names
+  the limit (on the Free plan, with an upgrade link), so your assistant can
+  tell you. Plans: see the [README](../README.md#plans-and-limits).

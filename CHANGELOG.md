@@ -3,6 +3,13 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-11-23 — Refusals as tool results
+
+- A call refused by a limit (the Free plan's rate limit, a monthly cap) or by plan (an agency-regulation
+  tool on the Free plan) now returns a tool result marked `isError: true` with the same message, instead
+  of a JSON-RPC error. Your assistant reads the message as before; clients no longer count the refusal
+  as a failed request. Limits and messages are unchanged.
+
 ## 2026-11-23 — Intellectual property (智慧財產), MCP Pro
 
 - New content in `search_domain_corpus` / `get_domain_document`: the Intellectual Property Office's
