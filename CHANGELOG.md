@@ -3,6 +3,17 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-11-24 — Tax regulations (租稅法規), MCP Pro
+
+- New content in `search_domain_corpus` / `get_domain_document`: the Ministry of Finance's tax rulings
+  (財政部各稅法令函釋檢索系統): the rulings in the latest compilation (法令彙編) of 18 taxes, about 7,600,
+  and the inland-tax rulings issued since (新頒令釋). Each is filed under the articles it interprets and
+  lists its taxes and edition; rulings a newer edition no longer cites are marked 不再援引. Tax statutes
+  appear as 綜合法規 article hits, and law tools note the related 租稅法規 rulings.
+- `domain` accepts `tax`, and `topic` also takes a tax by its law name (`所得稅法`, `土地稅法`, …).
+  Ids look like `tax:G0340105:台財稅32058`; a 字號 works with or without 字. Same plans as before:
+  results on MCP Pro and RegAI Pro, an upgrade message on Free.
+
 ## 2026-11-23 — Refusals as tool results
 
 - A call refused by a limit (the Free plan's rate limit, a monthly cap) or by plan (an agency-regulation

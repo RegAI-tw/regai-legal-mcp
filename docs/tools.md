@@ -1,6 +1,6 @@
 # Tool reference
 
-The RegAI Legal MCP exposes 11 tools (the 2 agency-regulation tools, 金融法規, 經濟法規 and 智慧財產, return results on MCP Pro). All are read-only and idempotent
+The RegAI Legal MCP exposes 11 tools (the 2 agency-regulation tools, 金融法規, 經濟法規, 智慧財產 and 租稅法規, return results on MCP Pro). All are read-only and idempotent
 (`readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true`).
 Text inputs (queries, law names, phrases) are **Traditional Chinese**.
 
@@ -12,7 +12,7 @@ what is possible and for writing better prompts.
 - [Court decisions](#court-decisions): `search_decisions`,
   `search_decisions_exact`, `get_decision_details`,
   `search_grand_chamber_decisions`
-- [Financial regulations](#financial-regulations-金融法規), [economic regulations](#economic-regulations-經濟法規) and [intellectual property](#intellectual-property-智慧財產):
+- [Financial regulations](#financial-regulations-金融法規), [economic regulations](#economic-regulations-經濟法規), [intellectual property](#intellectual-property-智慧財產) and [tax regulations](#tax-regulations-租稅法規):
   `search_domain_corpus`, `get_domain_document` (MCP Pro)
 
 Case-type codes used by the decision tools: `C` 憲法 (constitutional),
@@ -217,8 +217,8 @@ results, and the call is not counted toward the monthly limit.
 | `unit` | string | no | Only one issuing unit: `銀行局`, `證券期貨局`, `保險局`, `檢查局` or `本會` |
 | `include_repealed` | boolean | no | Include records no longer in force (default false) |
 | `limit` | integer | no | Maximum records (default 10, max 20) |
-| `domain` | string[] | no | Only these databases: `finance` (金融法規), `economy` (經濟法規), `ip` (智慧財產); omit for all |
-| `topic` | string[] | no | 智慧財產 only: these rights: `patent` 專利, `trademark` 商標, `copyright` 著作權, `trade_secret` 營業秘密, `ic_layout` 積體電路電路布局, `optical_disc` 光碟, `other` 其他; omit for all |
+| `domain` | string[] | no | Only these databases: `finance` (金融法規), `economy` (經濟法規), `ip` (智慧財產), `tax` (租稅法規); omit for all |
+| `topic` | string[] | no | 智慧財產: these rights: `patent` 專利, `trademark` 商標, `copyright` 著作權, `trade_secret` 營業秘密, `ic_layout` 積體電路電路布局, `optical_disc` 光碟, `other` 其他. 租稅法規: these taxes by law name: `稅捐稽徵法`, `所得稅法`, `所得基本稅額條例`, `營業稅法`, `貨物稅條例`, `特種貨物及勞務稅條例`, `菸酒稅法`, `證券交易稅條例`, `期貨交易稅條例`, `遺產及贈與稅法`, `土地稅法`, `房屋稅條例`, `契稅條例`, `娛樂稅法`, `印花稅法`, `使用牌照稅法`, `關稅法`, `海關緝私條例`. Omit for all |
 
 Each result shows the title (with the article or point that matched), category, issuing unit,
 字號, date, id (`fsc:GL004294`), status when not plainly in force, and the matching text.
@@ -280,6 +280,35 @@ with the `jid` to pass to `get_decision_details` when the decision is in the dec
 
 Ids look like `tipo:cr:電子郵件1150116` (copyright), `tipo:pt:983-23330` (patent) and `tipo:tm:574-66036`
 (trademark). Same plans as financial regulations: MCP Pro / RegAI Pro, an upgrade message on Free.
+
+## Tax regulations (租稅法規)
+
+The Ministry of Finance's (財政部, MOF) tax rulings, searched with the same two tools; pass `domain: ["tax"]` to search
+them alone, and `topic` to narrow by tax with its law name (e.g. `topic: ["土地稅法"]`). Source: 財政部各稅法令函釋檢索系統
+(ttc.mof.gov.tw):
+
+- the rulings (釋示函令) in the latest edition of each tax's compilation (法令彙編), for 18 taxes: 稅捐稽徵法, income tax,
+  the income basic tax, business tax, commodity tax, specially selected goods and services tax, tobacco and alcohol tax,
+  securities and futures transaction tax, estate and gift tax, land tax, house tax, deed tax, amusement tax, stamp tax,
+  vehicle license tax, customs and anti-smuggling (about 7,600);
+- the inland-tax rulings issued since (新頒令釋), until a later edition compiles them.
+
+Each hit is tagged with its tax, e.g. 〔租稅法規・土地稅法・函釋（令）〕. `get_domain_document` lists the 稅目, the articles
+the ruling is filed under in the compilation (法條), the edition it is compiled in (收錄) and, for a newly issued ruling,
+its legal basis (法源). A ruling filed under several taxes is one record listing all of them.
+
+**Document numbers.** A ruling can be looked up by its 字號 as written (`台財稅發第3507號`) or without 字
+(`台財稅第32058號`).
+
+**Status.** A ruling repealed by a later order is marked as such; one that a newer edition of the compilation no longer
+cites is marked 不再援引. Both are left out unless `include_repealed`.
+
+**References.** Tax statutes and regulations are not copied: they appear as article hits marked 綜合法規, and law tools
+(e.g. `get_article_by_number` on 契稅條例 第2條) end with 【相關專業法規】 naming the 〔租稅法規〕 rulings filed under that
+article.
+
+Ids look like `tax:G0340105:台財稅32058` (the tax's law code and the document number). Same plans as financial
+regulations: MCP Pro / RegAI Pro, an upgrade message on Free.
 
 ---
 
