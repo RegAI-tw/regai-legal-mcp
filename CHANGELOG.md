@@ -3,6 +3,19 @@
 Changes to the RegAI Legal MCP service as seen by clients (tools, parameters,
 auth, limits). Dates are when the change went live on `https://mcp.regai.tw/mcp`.
 
+## 2026-11-27 — Decision ordering and paging; 專業法規 year filter; MOF regulations in 租稅法規
+
+- **Court decisions are never left out by date.** `search_decisions` ranks by relevance only and gains `order`
+  (`relevance` default, `newest` = the same relevant decisions, newest first). `search_decisions_exact` no longer takes
+  `year_from` / `year_to`; a phrase too common to count is now listed newest first, batch by batch, with a `cursor` to
+  continue (it used to be refused as too broad).
+- `search_domain_corpus` gains `year_from` / `year_to` on the issue date (ROC or Gregorian).
+- `search_domain_corpus` lists the yearly editions of one rule once, under the newest year or the year the query names,
+  with the other years listed by 年度.
+- 租稅法規 adds about 1,900 MOF 法規命令, 行政規則 and rulings from 財政部主管法規共用系統 (law-out.mof.gov.tw) that the
+  compilations do not hold (ids `lawout:…`), with 法規沿革 and attachments; that system's repeal status (已廢止) now also
+  applies to compiled rulings.
+
 ## 2026-11-24 — Tax regulations (租稅法規), MCP Pro
 
 - New content in `search_domain_corpus` / `get_domain_document`: the Ministry of Finance's tax rulings

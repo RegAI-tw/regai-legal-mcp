@@ -119,6 +119,9 @@ listed as links, not extracted. Source: 憲法法庭.
 
 Search decisions by legal concept, fact pattern or keyword; hybrid search,
 reranked by relevance. Returns the most relevant decisions, not every match.
+No decision (court ruling, 釋字 or 憲判字) is ever left out by its date: the
+ranking is by relevance only, and `order: "newest"` lists the same relevant
+decisions newest first.
 
 When to use another tool instead:
 - every decision containing a literal phrase, or an exact count →
@@ -140,6 +143,7 @@ and `jid`; read a result in full with `get_decision_details` (by its `jid`).
 | `limit` | integer | no | Maximum results (default 15) |
 | `case_types` | string[] | no | Any of `C`, `V`, `M`, `A`, `P`; omit for all. Set only when the user asks to limit the case type, not from words in the query |
 | `sources` | string[] | no | Limit the kinds of decisions: `decisions` (court rulings), `judgments` (憲法法庭判決, 憲判字), `interpretations` (大法官解釋, 釋字) or `constitutional` (both); omit to search everything. Set only when the user asks to limit the source |
+| `order` | string | no | `relevance` (default) or `newest`: the same relevant decisions, newest decision date first. Nothing is filtered by date. Use `newest` only when the user asks for the latest decisions or a chronological list |
 
 Example: `{"query": "借名登記 返還請求", "case_types": ["V"]}`
 
@@ -149,7 +153,13 @@ Lists **every** decision whose text contains all the given literal phrases,
 newest first, with the exact total on the first page. Matching is literal
 (whitespace ignored), never by meaning: use `search_decisions` for concepts.
 Each row gives the citation, date, 案由, match count, `jid` and the first
-matching passage.
+matching passage. There is no date filter: every matching decision can be
+reached.
+
+**Very common phrases.** A phrase too common to count (e.g. 信賴保護原則,
+不當得利) is still listed: newest first, batch by batch, with no exact total.
+Each batch ends with a `cursor`; pass it back with the next `page` for the
+following (older) batch.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -157,13 +167,12 @@ matching passage.
 | `exclude` | string[] | no | Phrases that must **not** appear; `terms` + `exclude` ≤ 6 |
 | `court` | string | no | One of `最高法院`, `最高行政法院`, `憲法法庭`, `懲戒法院`, `懲戒法院懲戒法庭`, `懲戒法院職務法庭`, `智慧財產及商業法院`, `大法庭` |
 | `case_types` | string[] | no | Any of `C`, `V`, `M`, `A`, `P` |
-| `year_from` | integer | no | Earliest decision-date year, inclusive: ROC year (`109`) or Gregorian (`2020`); values up to 200 are read as ROC |
-| `year_to` | integer | no | Latest decision-date year, inclusive |
 | `page` | integer | no | 1-based page (default 1) |
 | `page_size` | integer | no | Rows per page (default 20, max 50) |
+| `cursor` | string | no | Only to continue a very common phrase's batch list: the `cursor` the previous batch gave |
 | `sources` | string[] | no | Same values as in `search_decisions`; `constitutional` lists 憲判字 and 釋字 as one 憲法審查 block with its own exact total |
 
-Example: `{"terms": ["借名登記"], "exclude": ["信託"], "court": "最高法院", "year_from": 110}`
+Example: `{"terms": ["借名登記"], "exclude": ["信託"], "court": "最高法院"}`
 
 ### `get_decision_details`: Get a court decision's full text
 
@@ -218,10 +227,15 @@ results, and the call is not counted toward the monthly limit.
 | `include_repealed` | boolean | no | Include records no longer in force (default false) |
 | `limit` | integer | no | Maximum records (default 10, max 20) |
 | `domain` | string[] | no | Only these databases: `finance` (金融法規), `economy` (經濟法規), `ip` (智慧財產), `tax` (租稅法規); omit for all |
+| `year_from` | integer | no | Earliest issue year (發布日期), inclusive: ROC year (`110`) or Gregorian (`2021`); values up to 200 are read as ROC. Set only when the user asks for a period |
+| `year_to` | integer | no | Latest issue year, inclusive |
 | `topic` | string[] | no | 智慧財產: these rights: `patent` 專利, `trademark` 商標, `copyright` 著作權, `trade_secret` 營業秘密, `ic_layout` 積體電路電路布局, `optical_disc` 光碟, `other` 其他. 租稅法規: these taxes by law name: `稅捐稽徵法`, `所得稅法`, `所得基本稅額條例`, `營業稅法`, `貨物稅條例`, `特種貨物及勞務稅條例`, `菸酒稅法`, `證券交易稅條例`, `期貨交易稅條例`, `遺產及贈與稅法`, `土地稅法`, `房屋稅條例`, `契稅條例`, `娛樂稅法`, `印花稅法`, `使用牌照稅法`, `關稅法`, `海關緝私條例`. Omit for all |
 
 Each result shows the title (with the article or point that matched), category, issuing unit,
 字號, date, id (`fsc:GL004294`), status when not plainly in force, and the matching text.
+Repeated copies of one title are listed once, under the newest; so are the yearly editions of
+one rule (「一百十四年度執行業務者費用標準」, 「一百十三年度…」): the newest year, or the year the query
+names (「109年度執行業務者費用標準」), with the other years listed by 年度 and id.
 
 ### `get_domain_document`: Get a financial-regulation record
 
@@ -291,7 +305,10 @@ them alone, and `topic` to narrow by tax with its law name (e.g. `topic: ["土�
   the income basic tax, business tax, commodity tax, specially selected goods and services tax, tobacco and alcohol tax,
   securities and futures transaction tax, estate and gift tax, land tax, house tax, deed tax, amusement tax, stamp tax,
   vehicle license tax, customs and anti-smuggling (about 7,600);
-- the inland-tax rulings issued since (新頒令釋), until a later edition compiles them.
+- the inland-tax rulings issued since (新頒令釋), until a later edition compiles them;
+- from the MOF's regulations system (財政部主管法規共用系統, law-out.mof.gov.tw): the 法規命令, 行政規則 (要點, 原則,
+  yearly standards such as 執行業務者費用標準) and rulings the compilations do not hold, about 1,900, with their
+  amendment history (法規沿革) and attachments. Ids look like `lawout:GL011585`.
 
 Each hit is tagged with its tax, e.g. 〔租稅法規・土地稅法・函釋（令）〕. `get_domain_document` lists the 稅目, the articles
 the ruling is filed under in the compilation (法條), the edition it is compiled in (收錄) and, for a newly issued ruling,
@@ -300,8 +317,9 @@ its legal basis (法源). A ruling filed under several taxes is one record listi
 **Document numbers.** A ruling can be looked up by its 字號 as written (`台財稅發第3507號`) or without 字
 (`台財稅第32058號`).
 
-**Status.** A ruling repealed by a later order is marked as such; one that a newer edition of the compilation no longer
-cites is marked 不再援引. Both are left out unless `include_repealed`.
+**Status.** A ruling repealed by a later order, or listed as repealed (已廢止) in the MOF's regulations system, is marked
+as such; one that a newer edition of the compilation no longer cites is marked 不再援引; a notice whose period
+(「自…至…止」) has ended is marked 已停止適用. All are left out unless `include_repealed`.
 
 **References.** Tax statutes and regulations are not copied: they appear as article hits marked 綜合法規, and law tools
 (e.g. `get_article_by_number` on 契稅條例 第2條) end with 【相關專業法規】 naming the 〔租稅法規〕 rulings filed under that
